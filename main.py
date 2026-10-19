@@ -16,10 +16,8 @@ def arpDump(oui):
     for line in arp.stdout.splitlines():
         parts = line.split()
         if "lladdr" in parts:
-            mac = parts[parts.index("lladdr") + 1]
-            print(mac)  
+            mac = parts[parts.index("lladdr") + 1] 
     oui = mac.replace(":", "").replace("-", "")[:6].upper()
-    print(oui)
 
     with sqlite3.connect(db_path) as db:
         cursor = db.execute(
